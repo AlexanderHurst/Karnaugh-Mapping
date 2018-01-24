@@ -1,4 +1,4 @@
-#!/home/ahurst_lap/env/digital_systems/bin/python
+#!/home/ahurst/env/digital_systems/bin/python
 """This program can help to simplify circuits
 """
 
@@ -25,4 +25,13 @@ if __name__ == "__main__":
     NUM_VAR = int(input("How many inputs do you have: "))
     k_map_array = create_2x2_arrays(NUM_VAR-1)
 
+    count = 0
+    for x in np.nditer(k_map_array, op_flags=['readwrite']):
+        x[...] = count
+        count += 1
     print(k_map_array)
+
+    user_input = input(
+        "Enter 0 to fill a truth table or enter your circuit in the form x+y*z")
+    if user_input == "0":
+        print("hi")
