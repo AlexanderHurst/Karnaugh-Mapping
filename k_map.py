@@ -44,3 +44,5 @@ if __name__ == "__main__":
             it[0] = input()
             it.iternext()
         print(k_map_array)
+    else:
+        print("coming shortly, sorry")
