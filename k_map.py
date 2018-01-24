@@ -25,13 +25,22 @@ if __name__ == "__main__":
     NUM_VAR = int(input("How many inputs do you have: "))
     k_map_array = create_2x2_arrays(NUM_VAR-1)
 
-    count = 0
-    for x in np.nditer(k_map_array, op_flags=['readwrite']):
-        x[...] = count
-        count += 1
-    print(k_map_array)
-
     user_input = input(
         "Enter 0 to fill a truth table or enter your circuit in the form x+y*z")
     if user_input == "0":
-        print("hi")
+        it = np.nditer(k_map_array, op_flags=[
+            'readwrite'], flags=['multi_index'])
+
+        print("(", end='')
+        for x in range(0, NUM_VAR):
+            print(chr(65+x), end='')
+            if x >= NUM_VAR-1:
+                print(") | ")
+            else:
+                print(", ", end='')
+
+        while not it.finished:
+            print(str(it.multi_index) + " | ", end='')
+            it[0] = input()
+            it.iternext()
+        print(k_map_array)
